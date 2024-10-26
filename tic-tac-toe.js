@@ -33,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const handleSquareClick = (e) => {
         const index = Array.from(squares).indexOf(e.target);
 
+        // If the square is already clicked, return early
+        if (gameState[index]) return;
+
         // Remove any existing class to prevent color conflicts
         e.target.classList.remove("X", "O");
 
