@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Select all div elements inside the board
     const squares = document.querySelectorAll("#board div"); // Select all squares in the game board
     const statusDiv = document.getElementById("status"); // Get the status div
+    const newGameButton = document.querySelector(".btn"); // Get the New Game button
     let currentPlayer = "X"; // Set initial player to "X"
     const gameState = Array(9).fill(null); // Initialize an array to track the game state
 
@@ -53,6 +54,20 @@ document.addEventListener("DOMContentLoaded", () => {
         currentPlayer = currentPlayer === "X" ? "O" : "X";
     };
     
+    // Function to reset the game
+    const resetGame = () => {
+        gameState.fill(null); // Reset the game state array
+        squares.forEach(square => {
+            square.textContent = ""; // Clear text content of each square
+            square.classList.remove("X", "O", "hover"); // Remove classes
+        });
+        statusDiv.textContent = "Move your mouse over a square and click to play an X or an O."; // Reset status message
+        statusDiv.classList.remove("you-won"); // Remove the you-won class
+        currentPlayer = "X"; // Reset to initial player
+        // Re-enable click events for squares
+        squares.forEach(square => square.addEventListener("click", handleSquareClick));
+    };
+
     // Add the "square" class to each div in the game board
     squares.forEach(square => {
         square.classList.add("square");
@@ -67,4 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             e.target.classList.remove('hover'); // Remove hover class
         });
     });
+
+    // Add click event listener to the New Game button
+    newGameButton.addEventListener("click", resetGame);
 });
