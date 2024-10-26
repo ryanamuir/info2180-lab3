@@ -24,5 +24,14 @@ document.addEventListener("DOMContentLoaded", () => {
     squares.forEach(square => {
         square.classList.add("square");
         square.addEventListener("click", handleSquareClick);
+
+        // Mouseover and mouseout event listeners using your compact style
+        square.addEventListener('mouseover', function(e) {
+            e.target.classList.add('hover'); // Add hover class
+        });
+
+        square.addEventListener('mouseout', function(e) {
+            e.target.classList.remove('hover'); // Remove hover class
+        });
     });
 });
